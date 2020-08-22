@@ -1,0 +1,14 @@
+server:
+  port: 8004
+  tomcat:
+    uri-encoding: utf-8
+  servlet:
+    context-path: /api
+
+
+spring:
+  application:
+    name: cloud-provider-payment
+  cloud:
+    zookeeper:
+      connect-string: master:2181
