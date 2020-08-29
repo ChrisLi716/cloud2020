@@ -16,7 +16,7 @@ import javax.annotation.Resource;
 @RestController
 @Slf4j
 @RequestMapping("/consumer/payment")
-//@DefaultProperties(defaultFallback = "paymentGlobalFallBack")
+@DefaultProperties(defaultFallback = "paymentGlobalFallBack")
 public class OrderHystrixController {
 
     @Resource
