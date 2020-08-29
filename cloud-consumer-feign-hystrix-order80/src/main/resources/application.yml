@@ -3,10 +3,9 @@ server:
   tomcat:
     uri-encoding: utf-8
 
-
 spring:
   application:
-    name: cloud-order-feign-service
+    name: cloud-order-feign-hystrix-service
 
 eureka:
   client:
@@ -16,6 +15,13 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka # 集群版
+  instance:
+    instance-id: feign-hystrix-order80
+    prefer-ip-address: true
+    # Eureka客户端向服务端发送心跳的时间间隔，默认为30秒
+    lease-renewal-interval-in-seconds: 1
+    # Eureka服务端收到客户端最后一次心跳后等待的时间上限，超时将注销服务，默认为90秒
+    lease-expiration-duration-in-seconds: 2
 
 
 # 消费端超时控制
@@ -23,7 +29,7 @@ ribbon:
   ReadTimeout: 5000 #建立连接所用的时间
   ConnectTimeout: 5000 #建立连接后服务端读取可用资源所用的时间
 
-logging:
-  level:
-    # feign以什么级别监控哪个接口
-    com.chris.springcloud.service.PaymentFeignService: debug
+
+feign:
+  hystrix:
+    enabled: true

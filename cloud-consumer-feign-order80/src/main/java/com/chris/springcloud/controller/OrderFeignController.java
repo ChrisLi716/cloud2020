@@ -13,19 +13,19 @@ import javax.annotation.Resource;
 
 @RestController
 @Slf4j
-@RequestMapping("/consumer")
+@RequestMapping("/consumer/payment")
 public class OrderFeignController {
 
     @Resource
     public PaymentFeignService paymentFeignService;
 
 
-    @GetMapping("/payment/get/{id}")
+    @GetMapping("/get/{id}")
     public CommonResult<Payment> getPaymentById(@PathVariable("id") Long id) {
         return paymentFeignService.getPaymentById(id);
     }
 
-    @GetMapping("payment/feign/timeout")
+    @GetMapping("/feign/timeout")
     public String paymentFeighTimeout() {
         // openfeign-ribbon 客户端默认等待1秒钟
         return paymentFeignService.paymentFeighTimeout();
