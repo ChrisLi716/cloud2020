@@ -6,16 +6,35 @@ spring:
     name: cloud-gateway
   cloud:
     gateway:
+      discovery:
+        locator:
+          enabled: true #开启从服务注册中心动态创建路由的功能，利用微服务名称进行路由
       routes:
-        - id: payment_8001_routh1             #路由的ID，没有固定规则但要求唯一，简易配合服务名
-          uri: http://localhost:8001          #匹配提供服务的路由地址
+        # 路由的ID，没有固定规则但要求唯一，简易配合服务名
+        - id: payment_8001_routh1
+          # 匹配提供服务的路由地址
+          # uri: http://localhost:8001
+          # 需要注意的是uri的协议为lb，表示启用gateway的负载均衡功能
+          # lb://serviceName 是spring cloud gateway在微服务中自动创建的负载均衡uri
+          uri: lb://cloud-payment-service
           predicates:
-            - Path=/api/payment/get/**            #断言，路径相匹配的进行路由
+            # 断言，路径相匹配的进行路由
+            - Path=/api/payment/get/**
 
-        - id: payment_8001_routh2                  #路由的ID，没有固定规则但要求唯一，简易配合服务名
-          uri: http://localhost:8001          #匹配提供服务的路由地址
+          # 路由的ID，没有固定规则但要求唯一，简易配合服务名
+        - id: payment_8001_routh2
+          # 匹配提供服务的路由地址
+          # uri: http://localhost:8001
+          uri: lb://cloud-payment-service
           predicates:
-            - Path=/api/payment/lb/**             #断言，路径相匹配的进行路由
+            # 断言，路径相匹配的进行路由
+            - Path=/api/payment/lb/**
+            #- After=2020-09-11T13:40:01.365+08:00[Asia/Shanghai]
+            #- Cookie=username,zzyy     #请求要还有cookie并且带有username=zzyy的键值对
+            #- Header=X-Request-Id,\d+  #请求头要有X-Request-Id属性并且值为整数的正则表达式
+            #- Host=**.chris.com
+            #- Method=GET
+            #- Query=id, \d+ #要有参数名username并且值还要啥整数才能路由
 eureka:
   client:
     # 表示是否将自己注册到eureka-server,默认为true
