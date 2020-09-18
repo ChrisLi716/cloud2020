@@ -11,10 +11,17 @@ spring:
       server:
         git:
           uri: https://github.com/ChrisLi716/springcloud-config.git  #git仓库名称
-          search-paths:
+          search-paths: #搜索目录,即为github中仓库下一级目录
             - springcloud-config
-
       label: master  #读取分支
+
+  #rabbitmq相关配置
+  rabbitmq:
+    host: master
+    port: 5672
+    username: chris
+    password: 123456
+
 
 eureka:
   client:
@@ -31,3 +38,11 @@ eureka:
     lease-renewal-interval-in-seconds: 1
     # Eureka服务端收到客户端最后一次心跳后等待的时间上限，超时将注销服务，默认为90秒
     lease-expiration-duration-in-seconds: 2
+
+
+# 暴露bus刷新配置监控端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "bus-refresh"

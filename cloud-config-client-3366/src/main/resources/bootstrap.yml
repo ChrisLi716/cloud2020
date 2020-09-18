@@ -1,5 +1,5 @@
 server:
-  port: 3355
+  port: 3366
   tomcat:
     uri-encoding: UTF-8
 spring:
@@ -27,7 +27,7 @@ eureka:
     service-url:
       defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka # 集群版
   instance:
-    instance-id: configclient3355
+    instance-id: configclient3366
     prefer-ip-address: true
     # Eureka客户端向服务端发送心跳的时间间隔，默认为30秒
     lease-renewal-interval-in-seconds: 1
