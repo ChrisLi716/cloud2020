@@ -1,0 +1,22 @@
+server:
+  port: 9001
+  tomcat:
+    uri-encoding: UTF-8
+  servlet:
+    context-path: /api
+
+spring:
+  application:
+    name: nacos-payment-provider
+  cloud:
+    nacos:
+      discovery:
+        server-addr: master:8848  #配置Nacos地址
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'  #监控所有
+
+

@@ -1,4 +1,4 @@
-package com.springcloud.order.config;
+package com.chris.springcloud.config;
 
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
@@ -7,12 +7,9 @@ import org.springframework.web.client.RestTemplate;
 
 @Configuration
 public class ApplicationContextConfig {
-
     @Bean
-    //手写Ribbon负载均衡算法时去掉@LoadBalanced
     @LoadBalanced
     public RestTemplate getRestTemplate() {
         return new RestTemplate();
     }
-
 }

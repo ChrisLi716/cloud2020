@@ -90,4 +90,9 @@ public class PaymentController {
         return serverPort;
     }
 
+    @GetMapping("/zipkin")
+    public String invokeZipkin() {
+        return "Hi, test sleuth and zipkin! port:" + serverPort;
+    }
+
 }

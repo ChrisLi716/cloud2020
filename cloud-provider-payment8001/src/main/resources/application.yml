@@ -8,10 +8,15 @@ server:
 spring:
   application:
     name: cloud-payment-service
+  zipkin:
+    base-url: http://localhost:9411 #链路跟踪数据的展示地址
+  sleuth:
+    sampler:
+      probability: 1 #采样率，介于0到1之间，1表示全部采样，一样用0.5表示一半采样
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.140.127:3306/chris?useSSL=false&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&serverTimezone=UTC
+    url: jdbc:mysql://192.168.101.127:3306/chris?useSSL=false&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&serverTimezone=UTC
     username: root
     password: 65536
     druid:
